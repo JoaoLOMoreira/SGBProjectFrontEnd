@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
 import { BovinoPresenter } from '../../providers/bovino.presenter';
@@ -13,6 +13,9 @@ import { Baixa } from '../../store/baixa.entity';
 export class BovinoBaixaModalComponent implements OnInit {
 
 @ViewChild('motivoSelect') motivoSelect!: MatSelect;
+
+
+selectedValue = new FormControl();
 
   BaixaForm = this.formBuilder.group({
     id: [''],
@@ -47,6 +50,7 @@ export class BovinoBaixaModalComponent implements OnInit {
   }
 
   onMotivoSelectChange(): void {
+    console.log('teste')
     const selectedValue = this.motivoSelect.value;
     this.BaixaForm.patchValue({ motivo: selectedValue });
   }
