@@ -1,0 +1,19 @@
+<h1>Deseja gerar uma baixa para esta bovino?</h1>
+
+<mat-form-field [appearance]="'outline'" >
+  <mat-label>Motivo</mat-label>
+  <mat-select #motivoSelect (change)="onMotivoSelectChange()">
+    <mat-option [value]="'0'" >Morte</mat-option>
+    <mat-option [value]="'1'" >Abate</mat-option>
+    <mat-option [value]="'2'" >Doacao</mat-option>
+    <mat-option [value]="'3'" >Venda</mat-option>
+    <mat-option [value]="'4'" >Furto</mat-option>
+    <mat-option [value]="'5'" >testes_desenvolvimento</mat-option>
+    <mat-option [value]="'6'" >outros</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-card-actions align="end">
+  <button mat-raised-button color="primary" (click)="cancelar()">Cancelar</button>
+  <button  class="buttonGerar" mat-raised-button color="primary" (click)="gerarBaixa()">Gerar</button>
+</mat-card-actions>
+

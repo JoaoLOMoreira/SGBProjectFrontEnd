@@ -1,0 +1,74 @@
+@import "src/app/styles/colors";
+@import "src/app/styles/font";
+@import "src/app/styles/variables";
+
+.layout {
+  width: 100%;
+}
+
+.layout-sidebar {
+  height: 100vh;
+  position: fixed;
+  z-index: 2;
+  @media (max-width: $small) { width: 218px; }
+}
+
+.layout-content {
+  background-color: $background-color;
+  height:calc(100vh);
+  margin-top: 64px;
+  padding: 64px;
+  @media (max-width: $small) { width: 100%; }
+}
+
+.mat-list-base {
+  border-bottom: 1px solid $gray-80;
+  width: $sidebar-width;
+  padding-bottom: 16px;
+  
+  & .mat-list-item {
+    display: flex;
+    cursor: pointer;
+    color: $sidebar-font-color;
+    width: 100%;
+    padding-left: 4px;
+    gap: 15px;
+
+    &:hover {
+      background-color: $sidebar-background-color-hover;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.sidebar-title {
+  color: $sidebar-title-color;
+  font-size: $fs-normal;
+  text-transform: uppercase;
+  margin-top: 32px;
+  margin-left: 24px;
+  margin-bottom: 16px;
+}
+
+.mat-list-base .mat-list-item.ui-element {
+  padding-left: 40px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 3;
+  height: $header-height;
+  color: #fff !important;
+}
+
+.header-toolbar {
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .mat-list-base .mat-list-item .mat-list-item-content { gap: 16px;}

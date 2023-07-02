@@ -1,0 +1,44 @@
+<mat-sidenav-container class="layout">
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    class="layout-sidebar"
+    [opened]="(isHandset$ | async) ? false : true"
+    [mode]="'side'"
+  >
+    <mat-selection-list role="list" [multiple]="false">
+      <mat-list-option [routerLink]="['/bovinos']">
+        <span mat-list-icon>🐮 </span>
+        <div mat-line>Bovinos</div>
+      </mat-list-option>
+      <mat-list-option [routerLink]="['/baixas']">
+        <span mat-list-icon>🥩 </span>
+        <div mat-line>Baixas</div>
+      </mat-list-option>
+      <mat-list-option [routerLink]="['/Vacinas']">
+        <span mat-list-icon>💉 </span>
+        <div mat-line>Vacinas</div>
+      </mat-list-option>
+      <mat-list-option [routerLink]="['/Usuarios']">
+        <span mat-list-icon>👨🏿 </span>
+        <div mat-line>Usuarios</div>
+      </mat-list-option>
+      <mat-list-option [routerLink]="['/Usuarios']">
+        <span mat-list-icon>🔨 </span>
+        <div mat-line>Configurações</div>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content >
+    <mat-toolbar class="header" color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <main class="layout-content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

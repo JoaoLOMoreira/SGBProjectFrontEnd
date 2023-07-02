@@ -1,0 +1,43 @@
+:host {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+
+  mat-card { 
+    width: 100%;
+
+  mat-card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    mat-card-title { margin: 0; padding: 0; }
+
+  }}
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    .qtdcria{
+      width: 10% !important;
+    }
+
+
+
+  }
+
+  .row:nth-child(1){
+    .cod { width: 10% !important; }
+    .apelido { width: 50% !important; }
+    .raca { width: 20% !important; }
+    .sexo { width: 20% !important; }
+  }
+
+  mat-card, form { width: 100%; }
+  mat-form-field { width: 100%; }
+
+
+}

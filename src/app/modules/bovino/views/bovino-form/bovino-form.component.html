@@ -1,0 +1,131 @@
+<mat-card>
+  <mat-card-header>
+    <!-- <mat-card-title>{{ selected$ | async | json }}</mat-card-title> -->
+
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="bovinoForm">
+      <div class="row">
+      <mat-form-field class="cod" [appearance]="'outline'">
+        <mat-label>Código</mat-label>
+        <input
+          matInput
+          formControlName="id"
+          placeholder="Código"
+        />
+      </mat-form-field>
+      <mat-form-field class="apelido" [appearance]="'outline'">
+        <mat-label>Apelido do bovino</mat-label>
+        <input
+          matInput
+          formControlName="apelido"
+          placeholder="Mimosa"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="sexo" [appearance]="'outline'">
+        <mat-label>Sexo</mat-label>
+        <mat-select value="Macho" formControlName="sexo">
+          <mat-option [value]="'macho'" >Macho</mat-option>
+          <mat-option [value]="'femea'">Fêmea</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field [appearance]="'outline'">
+        <mat-label>Raça</mat-label>
+        <mat-select value="Angus" formControlName="raca">
+          <mat-option  *ngFor="let raca of racas"  [value]="raca" >{{raca}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field [appearance]="'outline'">
+        <mat-label>Código da mãe</mat-label>
+        <input
+          matInput
+          formControlName="idMaterno"
+          placeholder="Código da femea genitora desse bovino"
+        />
+      </mat-form-field>
+        <mat-form-field [appearance]="'outline'">
+          <mat-label>Código do Pai</mat-label>
+          <input
+            matInput
+            formControlName="idPaterno"
+            placeholder="Código do macho genitor desse bovino"
+          />
+        </mat-form-field>
+        <mat-form-field [appearance]="'outline'">
+          <mat-label>Pasto</mat-label>
+          <mat-select value="pasto1" formControlName="pasto">
+            <mat-option [value]="'pasto1'" >pasto1</mat-option>
+            <mat-option [value]="'pasto2'" >pasto2</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field [appearance]="'outline'">
+          <mat-label>Mês de Nascimento</mat-label>
+          <input
+            type="number"
+            matInput
+            formControlName="mesNascimento"
+            placeholder="Mês de Nascimento desse bovino"
+          />
+        </mat-form-field>
+        <mat-form-field [appearance]="'outline'">
+          <mat-label>Ano de Nascimento</mat-label>
+          <input
+            type="number"
+            matInput
+            formControlName="anoNascimento"
+            placeholder="Ano de Nascimento desse bovino"
+          />
+        </mat-form-field>
+
+    </div>
+    <div class="row">
+
+        <mat-slide-toggle [color]="'primary'" formControlName="genitora" aria-label="Esse bovino é genitor de crias?">Genitora</mat-slide-toggle>
+
+        <mat-form-field [appearance]="'outline'" class="qtdcria">
+          <mat-label>Quantidade de crias</mat-label>
+              <input
+                type="number"
+                matInput
+                formControlName="qtdCria"
+              />
+            </mat-form-field>
+            <mat-form-field [appearance]="'outline'" class="qtdcria">
+              <mat-label>Ultima cria</mat-label>
+                  <input
+                    type="datetime"
+                    matInput
+                    formControlName="ultimaCria"
+                  />
+                </mat-form-field>
+            <!-- <mat-form-field [appearance]="'outline'" class="qtdcria">
+              <mat-label>Quantidade de crias</mat-label>
+                  <input
+                    matInput
+                    formControlName="qtdCria"
+                    placeholder="Quantidade de crias desse bovino"
+                  />
+                </mat-form-field> -->
+    </div>
+
+    <div class="row">
+      <mat-form-field [appearance]="'outline'">
+        <mat-label>Observações</mat-label>
+        <textarea matInput formControlName="obeservacao"></textarea>
+      </mat-form-field>
+    </div>
+
+
+
+    </form>
+  </mat-card-content>
+  
+  <mat-card-actions align="end">
+      <button mat-raised-button color="primary" (click)="goBack()">Cancelar</button>
+      <button mat-raised-button color="primary" (click)="submit()" >Salvar</button>
+  </mat-card-actions>
+</mat-card>
