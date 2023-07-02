@@ -18,7 +18,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { BovinoRoutingModule } from './bovino-routing.module';
 import { BovinoState } from './store/bovino.state';
 import { BovinoFormComponent } from './views/bovino-form/bovino-form.component';
-import { BovinoListComponent, ModalService } from './views/bovino-list/bovino-list.component';
+import { BovinoListComponent } from './views/bovino-list/bovino-list.component';
 import { BovinoPresenter } from './providers/bovino.presenter';
 import { BovinosFormResolver } from './providers/bovino.resolver';
 import { BovinoService } from './providers/bovino.service';
@@ -47,7 +47,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatToolbarModule,
     NgxsModule.forFeature([BovinoState]),
   ],
-  providers:[BovinoPresenter, BovinosFormResolver, BovinoService, ModalService],
+  providers:[BovinoPresenter, BovinosFormResolver, BovinoService],
   entryComponents: [BovinoBaixaModalComponent]
 })
 export class BovinoModule {}

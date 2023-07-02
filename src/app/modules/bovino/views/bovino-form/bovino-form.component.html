@@ -85,7 +85,7 @@
     <div class="row">
 
         <mat-slide-toggle [color]="'primary'" formControlName="genitora" aria-label="Esse bovino é genitor de crias?">Genitora</mat-slide-toggle>
-
+        <ng-container *ngIf="getGenitora === true">
         <mat-form-field [appearance]="'outline'" class="qtdcria">
           <mat-label>Quantidade de crias</mat-label>
               <input
@@ -97,11 +97,12 @@
             <mat-form-field [appearance]="'outline'" class="qtdcria">
               <mat-label>Ultima cria</mat-label>
                   <input
-                    type="datetime"
+                    type="date"
                     matInput
                     formControlName="ultimaCria"
                   />
                 </mat-form-field>
+              </ng-container>
             <!-- <mat-form-field [appearance]="'outline'" class="qtdcria">
               <mat-label>Quantidade de crias</mat-label>
                   <input

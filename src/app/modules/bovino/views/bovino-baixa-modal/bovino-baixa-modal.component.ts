@@ -40,7 +40,6 @@ selectedValue = new FormControl();
   }
 
   gerarBaixa(){
-//    console.log(this.BaixaForm.value.id!, this.BaixaForm.value.motivo!);
     this.presenter.Delete(this.BaixaForm.getRawValue() as Baixa);
     this.dialogRef.close();
   }
@@ -50,7 +49,6 @@ selectedValue = new FormControl();
   }
 
   onMotivoSelectChange(): void {
-    console.log('teste')
     const selectedValue = this.motivoSelect.value;
     this.BaixaForm.patchValue({ motivo: selectedValue });
   }

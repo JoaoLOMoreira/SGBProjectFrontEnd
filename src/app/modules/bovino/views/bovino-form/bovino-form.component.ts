@@ -19,6 +19,10 @@ export class BovinoFormComponent implements OnInit, OnDestroy {
   @Select(BovinoState.selectedBovino)
   selected$!: Observable<Bovino>
 
+  placeholderDate =  'pt-br' ? 'dd/mm/yyyy' : 'mm/dd/yyyy';
+    racas = racas.sort().map(raca => raca.toLowerCase());
+    editMode = false;
+
   bovinoForm = this.formBuilder.group({
     id: [{value: '', disabled: true}],
     apelido: [''],
@@ -36,10 +40,9 @@ export class BovinoFormComponent implements OnInit, OnDestroy {
     // ver com o vitin ultimaCria: Date;
   });
 
-  racas = racas.sort().map(raca => raca.toLowerCase());
-  editMode = false;
-
-  
+get getGenitora(): boolean {
+  return this.bovinoForm.get('genitora')?.value || false;
+}
   
 
   constructor(
@@ -49,6 +52,7 @@ export class BovinoFormComponent implements OnInit, OnDestroy {
     ) {}
 
 
+  
   
     ngOnInit(): void {
       const editar = this.route.snapshot.data[0];
@@ -76,10 +80,8 @@ export class BovinoFormComponent implements OnInit, OnDestroy {
 
   submit(){
     if (this.editMode){
-      console.log('Update')
       this.presenter.Update(this.bovinoForm.getRawValue() as Bovino);
     }else{
-      console.log('Create')
       this.presenter.create(this.bovinoForm.getRawValue() as Bovino);
     }
     
