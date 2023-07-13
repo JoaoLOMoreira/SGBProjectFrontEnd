@@ -3,7 +3,6 @@ import { Selector } from '@ngxs/store';
 import { Action, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs';
 import { BovinoService } from '../providers/bovino.service';
-import { Bovino } from './bovino.entity';
 
 import {
   BovinoGetAll,
@@ -13,6 +12,7 @@ import {
   BovinoDelete,
   StateModel,
 } from '../store/bovino.actions';
+import { BovinoList } from '@shared/entities';
 
 @State<StateModel>({
   name: 'bovino',
@@ -25,12 +25,12 @@ import {
 export class BovinoState {
 
   @Selector()
-  static bovinoList({ bovinos }: StateModel): Bovino[] {
+  static bovinoList({ bovinos }: StateModel): BovinoList[] {
     return bovinos;
   }
   @Selector()
-  static selectedBovino({ selected }: StateModel): Bovino {
-    return selected as Bovino;
+  static selectedBovino({ selected }: StateModel): BovinoList {
+    return selected as BovinoList;
   }
 
   constructor(private bovinoService: BovinoService) {}
@@ -76,7 +76,7 @@ export class BovinoState {
     ctx : StateContext<StateModel>,
     { id, payload }: BovinoUpdate
     ) {
-      return this.bovinoService.update(id, payload);
+      return this.bovinoService.update(payload);
     }
 
   @Action(BovinoDelete)
@@ -85,6 +85,6 @@ export class BovinoState {
     { id, payload } : BovinoDelete,
 
   ){
-      return this.bovinoService.delete(id, payload);
+      return this.bovinoService.delete(payload);
   }
 }

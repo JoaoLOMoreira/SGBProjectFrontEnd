@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BovinoList, Baixa } from '@shared/entities';
 import { environment } from 'src/environments/environment';
-import { Bovino } from '../store/bovino.entity';
-import { Baixa } from '../store/baixa.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -13,23 +12,23 @@ export class BovinoService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<any[]>('https://localhost:7045/api/bovinos');
+    return this.http.get<BovinoList[]>(this.endpoint);
   }
 
   getOne(id: string) {
-    return this.http.get<any>(this.endpoint + '/' + id);
+    return this.http.get<BovinoList>(this.endpoint + '/' + id);
   }
 
-  create(data: Bovino) {
+  create(data: BovinoList) {
    delete data.id;
-   return this.http.post<Bovino>('https://localhost:7045/api/bovinos', {...data});
+   return this.http.post<BovinoList>(this.endpoint, {...data});
   }
 
-  update(id: string, data: Bovino) {
-    return this.http.put<Bovino>(this.endpoint + '/' + id, data);
+  update(data: BovinoList) {
+    return this.http.put<BovinoList>(this.endpoint + '/' + data.id, data);
   }
 
-  delete(id: string, payload: Baixa) {
-    return this.http.delete<Baixa>(this.endpoint + '/' + payload.id?.toString() + '/' + payload.motivo.toString());
+  delete(data: Baixa) {
+    return this.http.delete<Baixa>(this.endpoint + '/' + data.id?.toString() + '/' + data.motivo.toString());
   }
 }

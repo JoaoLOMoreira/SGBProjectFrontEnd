@@ -1,49 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { BovinoFormComponent } from './views/bovino-form/bovino-form.component';
-import { BovinoListComponent } from './views/bovino-list/bovino-list.component';
 import { BovinosFormResolver } from './providers/bovino.resolver';
+import { BovinoFormComponent } from './bovino-form/bovino-form.component';
+import { BovinoListComponent } from './bovino-list/bovino-list.component';
 
 const routes: Routes = [
   {
-    path: 'bovinos',
-    children: [
-      {
-        path: '',
-        component: BovinoListComponent,
-      },
-      {
-        path: 'adicionar',
-        component: BovinoFormComponent,
-        resolve: [BovinosFormResolver]
-      },
-      {
-        path: 'editar/:id',
-        component: BovinoFormComponent,
-        resolve: [BovinosFormResolver]
-      },
-    ],
+    path: '',
+    component: BovinoListComponent,
   },
-  // {
-  //   path: 'baixas',
-  //   children:[
-  //     {
-  //       path:'',
-  //       component: BaixaListComponent,
-  //     },
-  //     // {
-  //     //   path: 'adicionar',
-  //     //   component: BaixaFormComponent,
-  //     //   resolve: []
-  //     // },
-  //     // {
-  //     //   path: 'editar/:id',
-  //     //   component: BaixaFormComponent,
-  //     //   resolve: []
-  //     // },
-  //   ]
-  // }
+  {
+    path: 'adicionar',
+    component: BovinoFormComponent,
+    resolve: [BovinosFormResolver]
+  },
+  {
+    path: 'editar/:id',
+    component: BovinoFormComponent,
+    resolve: [BovinosFormResolver]
+  },
 ];
 
 @NgModule({

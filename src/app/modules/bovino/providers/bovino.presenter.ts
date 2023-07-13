@@ -11,12 +11,14 @@ import {
   BovinoUpdate,
   BovinoDelete,
 } from '../store/bovino.actions';
-import { Bovino } from '../store/bovino.entity';
 import { BovinoState } from '../store/bovino.state';
-import { Baixa } from '../store/baixa.entity';
+import { BovinoList, Baixa } from '@shared/entities';
 
 @Injectable()
 export class BovinoPresenter {
+  @Select(BovinoState.bovinoList)
+  bovinolist$!: Observable<BovinoList[]>;
+
   unsubscribe$ = new Subject<void>();
 
   constructor(
@@ -32,35 +34,34 @@ export class BovinoPresenter {
     return this.store.dispatch(new BovinoGetOne(id));
   }
 
-  create(payload: Bovino){
-    console.log(payload);
+  create(payload: BovinoList){
     return this.store.dispatch(new BovinoCreate(payload))
-    .pipe(
-      takeUntil(this.unsubscribe$),
-      tap(() => {
-        this.goToList();
-      })
-    )
-    .subscribe();
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        tap(() => {
+          this.navigateToList();
+        })
+      )
+      .subscribe();
   }
 
-  Update(payload: Bovino){
+  update(payload: BovinoList){
     this.store.dispatch(new BovinoUpdate(payload.id as string, payload))
-    .pipe(
-      takeUntil(this.unsubscribe$),
-      tap(() => {
-        this.goToList();
-      })
-    )
-    .subscribe();
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        tap(() => {
+          this.navigateToList();
+        })
+      )
+      .subscribe();
   }
   
-  Delete(payload: Baixa){
+  delete(payload: Baixa){
     this.store.dispatch(new BovinoDelete(payload.id as string, payload))
       .pipe(
         takeUntil(this.unsubscribe$),
         tap(() => { 
-          this.goToList();
+          this.navigateToList();
         })
       )
       .subscribe();
@@ -72,8 +73,16 @@ export class BovinoPresenter {
     console.warn('Destroyed')
   }
 
-   goToList() {
+  navigateToList() {
     this.router.navigate(['/bovinos'])
+  }
+
+  navigateToAdd() {
+    this.router.navigate(['bovinos/adicionar']);
+  }
+
+  navigateToUpdate(id: string) {
+    this.router.navigate(['bovinos/editar', id]);
   }
 
 

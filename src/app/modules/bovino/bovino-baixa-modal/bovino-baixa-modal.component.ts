@@ -2,8 +2,8 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
-import { BovinoPresenter } from '../../providers/bovino.presenter';
-import { Baixa } from '../../store/baixa.entity';
+import { BovinoPresenter } from '../providers/bovino.presenter';
+import { Baixa } from '@shared/entities';
 
 @Component({
   selector: 'app-bovino-baixa-modal',
@@ -11,11 +11,9 @@ import { Baixa } from '../../store/baixa.entity';
   styleUrls: ['./bovino-baixa-modal.component.scss']
 })
 export class BovinoBaixaModalComponent implements OnInit {
+  @ViewChild('motivoSelect') motivoSelect!: MatSelect;
 
-@ViewChild('motivoSelect') motivoSelect!: MatSelect;
-
-
-selectedValue = new FormControl();
+  selectedValue = new FormControl();
 
   BaixaForm = this.formBuilder.group({
     id: [''],
@@ -26,21 +24,15 @@ selectedValue = new FormControl();
     private formBuilder: FormBuilder,
     private presenter: BovinoPresenter,
     private dialogRef: MatDialogRef<BovinoBaixaModalComponent>,
-    
     @Inject(MAT_DIALOG_DATA) public data: { id: string }
-
-    ) { }
-
-
+  ) { }
 
   ngOnInit(): void {
-    this.BaixaForm.patchValue({
-      id: this.data.id
-    });
+    this.BaixaForm.patchValue({ id: this.data.id });
   }
 
   gerarBaixa(){
-    this.presenter.Delete(this.BaixaForm.getRawValue() as Baixa);
+    this.presenter.delete(this.BaixaForm.getRawValue() as Baixa);
     this.dialogRef.close();
   }
 

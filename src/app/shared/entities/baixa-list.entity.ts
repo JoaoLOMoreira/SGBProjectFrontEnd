@@ -1,15 +1,16 @@
-export interface Bovino {
-  id?: string;
+export interface BaixaList {
+  id: string;
+  idBovino: string;
+  motivo: string;
+  idUsuario: string;
+  dataBaixa: Date;
   apelido: string;
   sexo: string;
   raca: string;
-  obeservacao: string;
-  pasto: string;
   idMaterno: string;
   idPaterno: string;
   mesNascimento: number;
   anoNascimento: number;
   genitora: boolean;
   qtdCria: number;
-  ultimaCria: Date;
 }

@@ -2,12 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject, filter, takeUntil, tap } from 'rxjs';
 import { racas } from 'src/app/core/constants/racas';
-import { BovinoPresenter } from '../../providers/bovino.presenter';
-import { Bovino } from '../../store/bovino.entity';
+
 import { ActivatedRoute } from '@angular/router';
-import { BovinoState } from '../../store/bovino.state';
 import { Select } from '@ngxs/store';
 import { DatePipe } from '@angular/common';
+import { BovinoList } from '@shared/entities';
+import { BovinoPresenter } from '../providers/bovino.presenter';
+import { BovinoState } from '../store/bovino.state';
 
 @Component({
   templateUrl: './bovino-form.component.html',
@@ -17,7 +18,7 @@ export class BovinoFormComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
   @Select(BovinoState.selectedBovino)
-  selected$!: Observable<Bovino>
+  selected$!: Observable<BovinoList>
 
   placeholderDate =  'pt-br' ? 'dd/mm/yyyy' : 'mm/dd/yyyy';
     racas = racas.sort().map(raca => raca.toLowerCase());
@@ -80,15 +81,15 @@ get getGenitora(): boolean {
 
   submit(){
     if (this.editMode){
-      this.presenter.Update(this.bovinoForm.getRawValue() as Bovino);
+      this.presenter.update(this.bovinoForm.getRawValue() as BovinoList);
     }else{
-      this.presenter.create(this.bovinoForm.getRawValue() as Bovino);
+      this.presenter.create(this.bovinoForm.getRawValue() as BovinoList);
     }
     
   }
 
    goBack(){
-    this.presenter.goToList();
+    this.presenter.navigateToList();
   }
 
 

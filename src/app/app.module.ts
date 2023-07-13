@@ -16,8 +16,20 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    loadChildren: () =>
-      import('./modules/bovino/bovino.module').then((m) => m.BovinoModule),
+    children: [
+      {
+        path: 'bovinos',
+        loadChildren: () => import('./modules/bovino/bovino.module').then((m) => m.BovinoModule),
+      }, 
+      {
+        path: 'baixas',
+        loadChildren: () => import('./modules/baixas/baixas.module').then((m) => m.BaixasModule),
+      },
+      {
+        path: 'vacinas',
+        loadChildren: () => import('./modules/vacina/vacina.module').then((m) => m.VacinaModule),
+      }
+    ]
   },
   {
     path: 'auth',

@@ -17,13 +17,13 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { BovinoRoutingModule } from './bovino-routing.module';
 import { BovinoState } from './store/bovino.state';
-import { BovinoFormComponent } from './views/bovino-form/bovino-form.component';
-import { BovinoListComponent } from './views/bovino-list/bovino-list.component';
 import { BovinoPresenter } from './providers/bovino.presenter';
 import { BovinosFormResolver } from './providers/bovino.resolver';
 import { BovinoService } from './providers/bovino.service';
-import { BovinoBaixaModalComponent } from './views/bovino-baixa-modal/bovino-baixa-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { BovinoBaixaModalComponent } from './bovino-baixa-modal/bovino-baixa-modal.component';
+import { BovinoFormComponent } from './bovino-form/bovino-form.component';
+import { BovinoListComponent } from './bovino-list/bovino-list.component';
 
 @NgModule({
   declarations: [BovinoListComponent, BovinoFormComponent, BovinoBaixaModalComponent],
