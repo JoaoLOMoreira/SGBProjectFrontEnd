@@ -34,6 +34,7 @@ export class BovinoState {
   }
 
   constructor(private bovinoService: BovinoService) {}
+  
 
   @Action(BovinoGetAll)
   getAll({ setState }: StateContext<StateModel>): void {

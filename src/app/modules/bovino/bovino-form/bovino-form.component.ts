@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subject, filter, takeUntil, tap } from 'rxjs';
+import { FormBuilder} from '@angular/forms';
+import { Observable, Subject,  takeUntil, tap } from 'rxjs';
 import { racas } from 'src/app/core/constants/racas';
 
 import { ActivatedRoute } from '@angular/router';
 import { Select } from '@ngxs/store';
-import { DatePipe } from '@angular/common';
 import { BovinoList } from '@shared/entities';
 import { BovinoPresenter } from '../providers/bovino.presenter';
 import { BovinoState } from '../store/bovino.state';
@@ -17,12 +16,13 @@ import { BovinoState } from '../store/bovino.state';
 export class BovinoFormComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
-  @Select(BovinoState.selectedBovino)
-  selected$!: Observable<BovinoList>
+  selected$ = this.presenter.bovinoselected$;
 
   placeholderDate =  'pt-br' ? 'dd/mm/yyyy' : 'mm/dd/yyyy';
-    racas = racas.sort().map(raca => raca.toLowerCase());
-    editMode = false;
+  
+  racas = racas.sort().map(raca => raca.toLowerCase());
+
+  editMode = false;
 
   bovinoForm = this.formBuilder.group({
     id: [{value: '', disabled: true}],

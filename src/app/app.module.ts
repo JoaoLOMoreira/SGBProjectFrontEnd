@@ -28,6 +28,10 @@ const routes: Routes = [
       {
         path: 'vacinas',
         loadChildren: () => import('./modules/vacina/vacina.module').then((m) => m.VacinaModule),
+      },
+      {
+        path: 'usuarios',
+        loadChildren: () => import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
       }
     ]
   },

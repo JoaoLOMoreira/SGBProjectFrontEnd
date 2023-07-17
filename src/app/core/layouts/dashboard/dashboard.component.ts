@@ -23,8 +23,11 @@ export class DashboardComponent {
   ) {}
 
   formName(): string {
-    if (this.activeUrl === '/bovinos') return 'Bovinos';
-    if (this.activeUrl === '/baixas') return 'Baixas';
+    // if (this.activeUrl === '/bovinos') return 'Bovinos';
+    // if (this.activeUrl === '/baixas') return 'Baixas';
+    // if (this.activeUrl === '/vacinas') return 'vacinas';
+    // if (this.activeUrl === '/usuarios') return 'usuarios';
+    // if (this.activeUrl === '/configuracoes') return 'configuracoes';
     return '';
   }
 }

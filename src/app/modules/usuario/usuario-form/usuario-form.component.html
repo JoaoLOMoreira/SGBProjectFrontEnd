@@ -1,0 +1,63 @@
+<mat-card>
+    <mat-card-header>
+      <!-- <mat-card-title>{{ selected$ | async | json }}</mat-card-title> -->
+  
+    </mat-card-header>
+  
+    <mat-card-content>
+      <form [formGroup]="usuarioForm">
+        <div class="row">
+        <mat-form-field class="cod" [appearance]="'outline'">
+          <mat-label>Código</mat-label>
+          <input
+            matInput
+            formControlName="id"
+            placeholder="Código"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="nome" [appearance]="'outline'">
+          <mat-label>Nome</mat-label>
+          <input
+            matInput
+            formControlName="nome"
+            placeholder="Nome completo"
+            required
+          />
+        </mat-form-field>
+        </div>
+        <div class="row">
+        <mat-form-field class="usuario" [appearance]="'outline'">
+          <mat-label>Usuario</mat-label>
+          <input
+            matInput
+            formControlName="nomeUsuario"
+            placeholder=""
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field class="email" [appearance]="'outline'">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            placeholder=""
+            required
+          />
+        </mat-form-field>
+
+
+      </div>
+
+
+
+      </form>
+    </mat-card-content>
+    
+    <mat-card-actions align="end">
+        <button mat-raised-button color="primary" (click)="goBack()">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="submit()" >Salvar</button>
+    </mat-card-actions>
+  </mat-card>
+  

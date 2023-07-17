@@ -5,22 +5,22 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
 import {
-  BovinoGetAll,
-  BovinoGetOne,
-  BovinoCreate,
-  BovinoUpdate,
-  BovinoDelete,
-} from '../store/bovino.actions';
-import { BovinoState } from '../store/bovino.state';
-import { BovinoList, Baixa } from '@shared/entities';
+  UsuarioGetAll,
+  UsuarioGetOne,
+  UsuarioCreate,
+  UsuarioUpdate,
+  UsuarioDelete,
+} from '../store/usuario.actions';
+import { UsuarioState } from '../store/usuario.state';
+import { UsuarioList } from '@shared/entities/usuario.entity';
 
 @Injectable()
-export class BovinoPresenter {
-  @Select(BovinoState.bovinoList)
-  bovinolist$!: Observable<BovinoList[]>;
-
-  @Select(BovinoState.selectedBovino)
-  bovinoselected$!: Observable<BovinoList>
+export class UsuarioPresenter {
+  @Select(UsuarioState.usuarioList)
+  usuariolist$!: Observable<UsuarioList[]>;
+  
+  @Select(UsuarioState.selectedUsuario)
+  usuarioselected$!: Observable<UsuarioList>;
 
   unsubscribe$ = new Subject<void>();
 
@@ -30,15 +30,15 @@ export class BovinoPresenter {
   ) { }
 
   getAll(){
-    return this.store.dispatch(new BovinoGetAll());
+    return this.store.dispatch(new UsuarioGetAll());
   }
 
   getOne(id: string){
-    return this.store.dispatch(new BovinoGetOne(id));
+    return this.store.dispatch(new UsuarioGetOne(id));
   }
 
-  create(payload: BovinoList){
-    return this.store.dispatch(new BovinoCreate(payload))
+  create(payload: UsuarioList){
+    return this.store.dispatch(new UsuarioCreate(payload))
       .pipe(
         takeUntil(this.unsubscribe$),
         tap(() => {
@@ -48,8 +48,8 @@ export class BovinoPresenter {
       .subscribe();
   }
 
-  update(payload: BovinoList){
-    this.store.dispatch(new BovinoUpdate(payload.id as string, payload))
+  update(payload: UsuarioList){
+    this.store.dispatch(new UsuarioUpdate(payload.id as string, payload))
       .pipe(
         takeUntil(this.unsubscribe$),
         tap(() => {
@@ -59,8 +59,8 @@ export class BovinoPresenter {
       .subscribe();
   }
   
-  delete(payload: Baixa){
-    this.store.dispatch(new BovinoDelete(payload.id as string, payload))
+  delete(payload: UsuarioList){
+    this.store.dispatch(new UsuarioDelete(payload))
       .pipe(
         takeUntil(this.unsubscribe$),
         tap(() => { 
@@ -77,15 +77,15 @@ export class BovinoPresenter {
   }
 
   navigateToList() {
-    this.router.navigate(['/bovinos'])
+    this.router.navigate(['/usuarios'])
   }
 
   navigateToAdd() {
-    this.router.navigate(['bovinos/adicionar']);
+    this.router.navigate(['usuarios/adicionar']);
   }
 
   navigateToUpdate(id: string) {
-    this.router.navigate(['bovinos/editar', id]);
+    this.router.navigate(['usuarios/editar', id]);
   }
 
 
