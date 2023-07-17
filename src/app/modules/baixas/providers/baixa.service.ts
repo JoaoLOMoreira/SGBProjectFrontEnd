@@ -12,7 +12,7 @@ import { environment } from "src/environments/environment";
     constructor(private http: HttpClient) {}
 
     getAll() {
-        return this.http.get<any[]>('https://localhost:7045/api/baixas');
+        return this.http.get<any[]>(this.endpoint);
       }
 
 

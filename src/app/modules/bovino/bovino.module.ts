@@ -47,7 +47,7 @@ import { BovinoListComponent } from './bovino-list/bovino-list.component';
     MatToolbarModule,
     NgxsModule.forFeature([BovinoState]),
   ],
-  providers:[BovinoPresenter, BovinosFormResolver, BovinoService],
+  providers:[BovinoPresenter, BovinosFormResolver, BovinoService], // verificar funcionalidade do resolver 
   entryComponents: [BovinoBaixaModalComponent]
 })
 export class BovinoModule {}
